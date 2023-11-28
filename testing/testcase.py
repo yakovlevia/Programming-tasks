@@ -47,7 +47,7 @@ class ListOperation():
 if __name__ == "__main__":
   rand = RandomGenerator()
   lops = ListOperation()
-  t = rand.integer(1, 1000)
+  t = rand.integer(1, 1000000)
   print(t)
   for __ in range(t):
     print(rand.integer(1, 1000), end=' ')

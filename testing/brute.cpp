@@ -12,6 +12,6 @@ int main() {
 
     std::cout << n << "\n";
     for (int i = 0; i < n; i++) {
-        std::cout << vec[i] << "  ";
+        std::cout << vec[i] << " ";
     }
 }
