@@ -1,3 +1,4 @@
+import string
 import sys
 import random
 
@@ -27,7 +28,7 @@ class RandomGenerator():
     for index, element in enumerate(l):
       l[index] = self.double(lower_bound, upper_bound)
     return l
-
+  
 
 class ListOperation():
   def __init__(self):
@@ -47,7 +48,8 @@ class ListOperation():
 if __name__ == "__main__":
   rand = RandomGenerator()
   lops = ListOperation()
-  t = rand.integer(1, 1000000)
+  t = 1000
   print(t)
+  N = 256
   for __ in range(t):
-    print(rand.integer(1, 1000), end=' ')
+    print(''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N)))

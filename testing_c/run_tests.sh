@@ -1,6 +1,8 @@
 # 1. creating the executables
-g++ brute.cpp -fsanitize=address -o brute_executable
-g++ optimal.cpp -fsanitize=address -o optimal_executable
+mkdir exct
+cd  exct
+gcc ../brute.c -fsanitize=address -fsanitize-address-use-after-scope -o brute_executable
+gcc ../optimal.c -fsanitize=address -fsanitize-address-use-after-scope  -o optimal_executable
 
 # 2. getting the number of times to run the script from command line args
 n=$1
@@ -10,14 +12,20 @@ n=$1
 for (( i=1; i<=n; ++i ))
 do
   # generate and map testcases to testcase.txt
-  python3 testcase.py 
-  # generate and map respective outputs
+  python3 ../testcase.py 
   start1=$(date +%s.%N)
   ./brute_executable < testcase.txt > brute_out.txt
-  end1=$(date +%s.%N) 
+  end1=$(date +%s.%N)
+  #/usr/bin/time -v ./brute_executable < testcase.txt > brute_out.txt
+  
+
+  
+
   start2=$(date +%s.%N)
   ./optimal_executable < testcase.txt > optimal_out.txt
-  end2=$(date +%s.%N)   
+  end2=$(date +%s.%N)  
+  #/usr/bin/time -v ./optimal_executable < testcase.txt > optimal_out.txt
+   
 
 # Bash Magic : If the difference command produces any output
   if [[ $(diff brute_out.txt optimal_out.txt) ]]
